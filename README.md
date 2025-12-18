@@ -2,7 +2,7 @@
 
 A powerful Retrieval-Augmented Generation (RAG) system for intelligent news article querying and analysis. This backend service enables users to ask natural language questions about news articles and receive AI-powered responses based on semantic search through a vector database of news content.
 
-## 🚀 Features
+## Features
 
 - **Semantic Search**: Uses TensorFlow.js Universal Sentence Encoder to generate embeddings for articles and queries
 - **RAG Architecture**: Combines vector similarity search with Google Gemini AI for contextual responses
@@ -11,7 +11,7 @@ A powerful Retrieval-Augmented Generation (RAG) system for intelligent news arti
 - **Vector Database**: Stores and searches article embeddings using Qdrant
 - **Docker Support**: Fully containerized with Docker Compose for easy deployment
 
-## 📋 Tech Stack
+## Tech Stack
 
 - **Runtime**: Node.js 20
 - **Framework**: Express.js
@@ -24,11 +24,10 @@ A powerful Retrieval-Augmented Generation (RAG) system for intelligent news arti
   - Qdrant (vector database for semantic search)
 - **Containerization**: Docker & Docker Compose
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
-User Query → Embedding Generation → Vector Search (Qdrant) 
-    → Context Retrieval → Gemini AI → Response
+User Query → Embedding Generation → Vector Search (Qdrant) → Context Retrieval → Gemini AI → Response
 ```
 
 1. User submits a query via the chat API
@@ -38,13 +37,13 @@ User Query → Embedding Generation → Vector Search (Qdrant)
 5. Gemini generates a contextual response based on the retrieved articles
 6. Response is stored in Redis (session history) and PostgreSQL (interaction log)
 
-## 📦 Prerequisites
+##  Prerequisites
 
 - Node.js 20+ (if running locally)
 - Docker & Docker Compose (recommended)
-- Google Gemini API Key ([Get one here](https://makersuite.google.com/app/apikey))
+- Google Gemini API Key 
 
-## 🔧 Installation & Setup
+## Installation & Setup
 
 ### Using Docker Compose (Recommended)
 
@@ -116,7 +115,7 @@ User Query → Embedding Generation → Vector Search (Qdrant)
    npm start
    ```
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 ### Chat Endpoints
 
@@ -177,7 +176,7 @@ Ingest articles from `mock_articles.json` into the vector database.
 }
 ```
 
-## 📝 Usage Examples
+##  Usage Examples
 
 ### Query News Articles
 
@@ -213,7 +212,7 @@ curl -X POST http://localhost:3004/chat \
 curl http://localhost:3004/chat/history/{sessionId}
 ```
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 News-Intelligence/
@@ -241,7 +240,7 @@ News-Intelligence/
 └── package.json               # Dependencies and scripts
 ```
 
-## 🔐 Environment Variables
+##  Environment Variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -255,14 +254,14 @@ News-Intelligence/
 | `REDIS_URL` | Redis connection URL | `redis://redis:6379` |
 | `QDRANT_URL` | Qdrant API URL | `http://qdrant:6333` |
 
-## 🐳 Docker Services
+##  Docker Services
 
 - **api**: Node.js backend application (port 3004)
 - **postgres**: PostgreSQL database (port 5433)
 - **redis**: Redis cache (port 6379)
 - **qdrant**: Vector database (port 6333)
 
-## 🔍 How It Works
+##  How It Works
 
 1. **Article Ingestion**:
    - Articles are loaded from `mock_articles.json`
@@ -280,20 +279,7 @@ News-Intelligence/
    - Conversation history is cached in Redis (expires after 1 hour)
    - All interactions are logged in PostgreSQL for analytics
 
-## 🛠️ Development
 
-### Adding New Articles
-
-Edit `mock_articles.json` and run the ingest endpoint:
-
-```json
-[
-  {
-    "title": "Article Title",
-    "content": "Article content here..."
-  }
-]
-```
 
 ### Database Schema
 
@@ -309,34 +295,16 @@ CREATE TABLE interactions (
 );
 ```
 
-## 📊 Performance Considerations
+## Performance Considerations
 
 - **Embedding Model**: Universal Sentence Encoder loads on first use (~50MB model)
 - **Vector Search**: Qdrant handles similarity search efficiently
 - **Caching**: Redis caches session data to reduce database load
 - **Response Time**: Typically 2-5 seconds depending on network and model load
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
-## 📄 License
+##  License
+This project is licensed under the MIT License.
 
-[Add your license here]
 
-## 🙋 Support
-
-For issues and questions, please open an issue on the repository.
-
-## 🎯 Future Enhancements
-
-- [ ] Support for real-time news ingestion from RSS feeds
-- [ ] Multi-language support
-- [ ] Advanced filtering and date range queries
-- [ ] User authentication and personalization
-- [ ] Analytics dashboard
-- [ ] Batch processing for large article sets
